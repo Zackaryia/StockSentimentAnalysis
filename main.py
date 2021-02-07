@@ -1,6 +1,9 @@
 import tweepy
 import json
 import datetime
+import time
+
+time.sleep(3)
 
 from rake_nltk import Rake
 
@@ -59,8 +62,9 @@ class MyStreamListener(tweepy.StreamListener):
 		Stocks_analized += 1
 		total_sentiment+= sentiment['compound']
 
-		print(sentiment)
-		print(total_sentiment, Stocks_analized)
+		print(f"Tweet's Sentiment:          {sentiment}")
+		print(f"Amount of tweets analyzed:  {Stocks_analized}")
+		print(f"Sum of all tweet sentiment: {total_sentiment}")
 		print("##########################")
 
 
