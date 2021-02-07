@@ -2,6 +2,10 @@ import tweepy
 import json
 import datetime
 
+from rake_nltk import Rake
+
+rake = Rake()
+
 #Sentiment Analyzer
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -36,16 +40,33 @@ def get_status_full_text(status):
 		return status.text
 
 
+total_sentiment = 0.0
+Stocks_analized = 0
+
 class MyStreamListener(tweepy.StreamListener):
 
 	def on_status(self, status):
+		text = get_status_full_text(status)
 		print("##########################")
-		print(get_status_full_text(status))
+		print(text)
+		print("## SENTAMINT ##")
+
+		sentiment = analyzer.polarity_scores(text) #create custom popularity score if 🚀 set compound == 0.7
+
+		global Stocks_analized
+		global total_sentiment
+
+		Stocks_analized += 1
+		total_sentiment+= sentiment['compound']
+
+		print(sentiment)
+		print(total_sentiment, Stocks_analized)
 		print("##########################")
+
 
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode="extended")
-myStream.filter(track=['$GME'], is_async=True)
+myStream.filter(track=['$GME', '$AMC', '$NOK', '$BB'], is_async=True)
 
 
 
