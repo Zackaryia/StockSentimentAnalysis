@@ -5,10 +5,6 @@ import time
 
 time.sleep(3)
 
-from rake_nltk import Rake
-
-rake = Rake()
-
 #Sentiment Analyzer
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -21,12 +17,44 @@ with open('keys.json') as keysfile:
 	keys = json.load(keysfile)
 
 
+#adding support for sentiment analysis of multiple stoinks
+
+Total = {
+	"total_sentiment": 0.0,
+	"Stocks_analized": 0
+}
+
+Stocks = {
+	"$GME": {
+		"total_sentiment": 0.0,
+		"Stocks_analized": 0
+	},
+	"$AMC": {
+		"total_sentiment": 0.0,
+		"Stocks_analized": 0
+	},
+	"$NOK": {
+		"total_sentiment": 0.0,
+		"Stocks_analized": 0
+	},
+	"$BB": {
+		"total_sentiment": 0.0,
+		"Stocks_analized": 0
+	}
+}
+
+
+
+
 # Setting up Tweepy (Twitter API Wrapper for python)
 
 auth = tweepy.OAuthHandler(keys['API_Key'], keys['API_Secret_Key'])
 auth.set_access_token(keys['Access_Token'], keys['Access_Token_Secret'])
 
 api = tweepy.API(auth)
+
+
+# Getting the text of a status, including retweets.
 
 def get_status_full_text(status):
 	if 'extended_tweet' in status.__dict__.keys():
@@ -43,12 +71,11 @@ def get_status_full_text(status):
 		return status.text
 
 
-total_sentiment = 0.0
-Stocks_analized = 0
 
 class MyStreamListener(tweepy.StreamListener):
 
 	def on_status(self, status):
+		Start_time_of_analysis = time.time() 
 		text = get_status_full_text(status)
 		print("##########################")
 		print(text)
@@ -56,15 +83,23 @@ class MyStreamListener(tweepy.StreamListener):
 
 		sentiment = analyzer.polarity_scores(text) #create custom popularity score if 🚀 set compound == 0.7
 
-		global Stocks_analized
-		global total_sentiment
+		global Stocks
+		global Total
 
-		Stocks_analized += 1
-		total_sentiment+= sentiment['compound']
+		Total["Stocks_analized"] += 1
+		Total["total_sentiment"] += sentiment['compound']
+
+		for Stock_ticker in Stocks.keys():
+			if Stock_ticker in text.split(' '):
+				Stocks[Stock_ticker]["Stocks_analized"] += 1
+				Stocks[Stock_ticker]["total_sentiment"] += sentiment['compound']
 
 		print(f"Tweet's Sentiment:          {sentiment}")
-		print(f"Amount of tweets analyzed:  {Stocks_analized}")
-		print(f"Sum of all tweet sentiment: {total_sentiment}")
+		print(f"Amount of tweets analyzed:  {Total['Stocks_analized']}")
+		print(f"Sum of all tweet sentiment: {Total['total_sentiment']}")
+
+		End_time_of_analysis = time.time() 
+		print(f"Time to analyze in milli  : {(End_time_of_analysis-Start_time_of_analysis) * 1000.0}")
 		print("##########################")
 
 
