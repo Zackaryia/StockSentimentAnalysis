@@ -1,0 +1,36 @@
+
+<!--
+  Written by Amit Agarwal amit@labnol.org
+  Paste this anywhere between the body tag
+-->
+
+<style>
+
+    #tweet {
+      width: 400px !important;
+    }
+  
+    #tweet iframe {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  
+  </style>
+  
+  <div id="tweet" tweetID="515490786800963584"></div>
+  
+  <script sync src="https://platform.twitter.com/widgets.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+
+    $.getJSON(
+        'https://publish.twitter.com/oembed?url=https%3A%2F%2Ftwitter.com%2FInterior%2Fstatus%2F507185938620219395', 
+        function(data) {
+            console.log(data)
+        }
+
+    )
+
+  </script>
+  

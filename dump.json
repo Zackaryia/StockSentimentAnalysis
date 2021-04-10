@@ -1,0 +1,20 @@
+SWEEP 300 $TSLA 04/16/21 $680 puts for $44.70 
+
+Spot: $692.74
+Premium: $1.3M
+## SENTAMINT ##
+Tweet's Sentiment:          {'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}
+Amount of tweets analyzed:  44
+Sum of all tweet sentiment: 9.045100000000001
+Time to analyze in milli  : 0.4932880401611328
+##########################
+Traceback (most recent call last):
+  File "Main.py", line 178, in <module>
+    AlpacaInterface.redistribute(Return_averaged_Alpaca_compatible_snapshot)
+  File "/home/ze/Desktop/Twitter Sentiment Analysis stocks/AlpacaInterface.py", line 22, in redistribute
+    PortfolioManager_instance.percent_rebalance('timeout')
+  File "/home/ze/Desktop/Twitter Sentiment Analysis stocks/portfolio_manager.py", line 48, in percent_rebalance
+    self.format_percent(
+  File "/home/ze/Desktop/Twitter Sentiment Analysis stocks/portfolio_manager.py", line 20, in format_percent
+    return float(num)
+TypeError: float() argument must be a string or a number, not 'list'

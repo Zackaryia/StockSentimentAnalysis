@@ -1,0 +1,75 @@
+{
+ "stocks": {
+  "$GME": {
+   "total_sentiment": 1.4548,
+   "Stocks_analized": 13
+  },
+  "$RKT": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  },
+  "$UWMC": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  },
+  "$PLTR": {
+   "total_sentiment": 0.9152,
+   "Stocks_analized": 2
+  },
+  "$SKT": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  },
+  "$AMC": {
+   "total_sentiment": 3.1675,
+   "Stocks_analized": 22
+  },
+  "$TSLA": {
+   "total_sentiment": 3.6494999999999997,
+   "Stocks_analized": 11
+  },
+  "$SPY": {
+   "total_sentiment": 3.4837,
+   "Stocks_analized": 12
+  },
+  "$APPL": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  },
+  "$BB": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  },
+  "$NIO": {
+   "total_sentiment": 1.3556,
+   "Stocks_analized": 6
+  },
+  "$PLC": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  },
+  "$MFGP": {
+   "total_sentiment": 0.0,
+   "Stocks_analized": 0
+  }
+ },
+ "other_info": {
+  "AllStocks": {
+   "total_sentiment": 6.3526,
+   "Stocks_analized": 55
+  },
+  "Last6Stocks": [],
+  "Time": 1616427666.0603285,
+  "Last10minAction": 1616427606.0091624,
+  "Other": [
+   "STARTED ON 1616427606.009155"
+  ],
+  "Tweets": [
+   "1374023295511756801",
+   "1374023297915088902",
+   "1374023298523279362",
+   "1374023304596631552",
+   "1374023309399064578"
+  ]
+ }
+}
